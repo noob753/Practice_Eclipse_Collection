@@ -19,7 +19,7 @@ import org.junit.Test;
 
 public class Exercise1Test extends PetDomainForKata
 {
-	public static Predicate2<Person, PetType> petContain = (person,petType) -> person.getPetTypes().contains(petType);
+	public static Predicate2<Person, PetType> hasPet = (person,petType) -> person.hasPet(petType);
 
     @Test
     public void getFirstNamesOfAllPeople()
@@ -43,7 +43,7 @@ public class Exercise1Test extends PetDomainForKata
     public void getPeopleWithCats()
     {
         MutableList<Person> people = this.people;
-        MutableList<Person> peopleWithCats = people.selectWith(petContain, PetType.CAT);
+        MutableList<Person> peopleWithCats = people.selectWith(hasPet, PetType.CAT);
         Verify.assertSize(2, peopleWithCats);
     }
 
@@ -51,7 +51,7 @@ public class Exercise1Test extends PetDomainForKata
     public void getPeopleWithoutCats()
     {
         MutableList<Person> people = this.people;
-        MutableList<Person> peopleWithoutCats = people.rejectWith(petContain, PetType.CAT);
+        MutableList<Person> peopleWithoutCats = people.rejectWith(hasPet, PetType.CAT);
         Verify.assertSize(6, peopleWithoutCats);
     }
 }
